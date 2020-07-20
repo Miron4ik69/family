@@ -30,6 +30,16 @@ class QueryBuilder {
         }
     }
 
+    public function update($table, $parameters)
+    {
+        try{
+            $statement = $this->pdo->prepare("update {$table} set status = {$parameters['status']} where id = {$parameters['id']}");
+            $statement->execute();
+        } catch(PDOException $e){
+            echo $e->getMessage();
+        }
+    }
+
     public function login($table, $parameters)
     {
         $name = $parameters['name'];
@@ -75,7 +85,7 @@ class QueryBuilder {
             ];
             
             return $array;
-            
+
         } catch(PDOException $e){
             echo $e->getMessage();
         }
@@ -84,5 +94,13 @@ class QueryBuilder {
     public function addTasks($table, $parameters)
     {
 
+        var_dump($parameters); die();
+
+        try{
+        $statement = $this->pdo->prepare("insert into {$table} (`text`, `user_id`) values ({$parameters['text']},{$parameters['id']})");
+        $statement->execute();
+        } catch(PDOException $e){
+            echo $e->getMessage();
+        }
     }
 }

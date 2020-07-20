@@ -10,9 +10,7 @@
 
   <!--MDB core JavaScript-->
   <script type="text/javascript" src="../js/mdb.min.js"></script>
-  <!-- Pagination -->
-  <script type="text/javascript" src="../js/pagination.js"></script>
-  <script type="text/javascript" src="../js/pagination.min.js"></script>
+
   <!-- Custom Script --> 
   <script type="text/javascript" src="../js/script.js"></script>
 

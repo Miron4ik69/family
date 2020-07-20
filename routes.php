@@ -13,6 +13,7 @@ $router->post('auth', 'LoginController@login');
 /* Upload */
 $router->post('uploadfile', 'UploadController@upload');
 $router->post('distributeupd', 'UploadController@distributeupd');
+$router->post('updstatus', 'UploadController@updStatus');
 
 /* Register */
 $router->get('registration', 'RegisterController@index');

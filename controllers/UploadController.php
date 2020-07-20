@@ -28,8 +28,22 @@ class UploadController
 
     public function distributeupd()
     {
-      App::get('database')->addTasks('tasks', [
-        
+
+      App::get('database')->insert('tasks', [
+        'user_id' => $_POST['userId'],
+        'text' => $_POST['fileTask']
       ]);
+
+      header('Location: /home');
+    }
+
+    public function updStatus()
+    {
+      App::get('database')->update('tasks', [
+        'status' => $_POST['status'],
+        'id' => $_POST['id']
+      ]);
+
+      header('Location: /home');
     }
 }

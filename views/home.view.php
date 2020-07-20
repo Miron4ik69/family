@@ -33,7 +33,7 @@ if(!$_SESSION){
     <!-- Section heading -->
     <h2 class="text-center font-weight-bold mb-4 pb-2 mt-5">Tasks</h2>
 <?php foreach($results as $result): ?>
-  	<!-- Grid row -->
+    <!-- Grid row -->
     <div class="row align-items-center">
 
       <!-- Grid column -->
@@ -60,9 +60,9 @@ if(!$_SESSION){
       if($result->status == "0"){
         echo "<h4 class='font-weight-bold mb-3 text-info'><strong>Queue</strong></h4>";
       } elseif($result->status == "1") {
-        echo "<h4 class='font-weight-bold mb-3 text-info'><strong>In the process</strong></h4>";
+        echo "<h4 class='font-weight-bold mb-3 text-danger'><strong>In the process</strong></h4>";
       } elseif($result->status == "2") {
-        echo "<h4 class='text-successful'>Done!</h4>";
+        echo "<h4 class='text-success font-weight-bold'>Done!</h4>";
       }
 
       
@@ -73,24 +73,24 @@ if(!$_SESSION){
 
         <!-- Excerpt -->
         <p class="dark-grey-text"><?= $result->text; ?></p>
-
+      <form action="/updstatus" method="post">
         <!-- Status -->
-        <?php 
-        
-          if($result->status == "0"){
-            echo "<button class='btn btn-success btn-md mx-0 btn-rounded'>Accept</button>";
-          } elseif($result->status == "1"){
-            echo "<button class='btn btn-success btn-md mx-0 btn-rounded'>Accept</button>";
-          } 
-        ?>
-        
-
+        <?php if($result->status == "0"):?>
+          <input hidden type="text" name="id" value="<?= $result->id; ?>">
+          <input hidden type="text" name="status" value="1">
+          <button type="submit" class="btn btn-success btn-md mx-0 btn-rounded">Accept</button>
+        <?php elseif($result->status == "1"): ?>
+          <input hidden type="text" name="status" value="2">
+          <input hidden type="text" name="id" value="<?= $result->id; ?>">
+          <button type="submit" class="btn btn-success btn-md mx-0 btn-rounded">Сomplete</button>
+        <?php endif; ?>
+      </form>
       </div>
       <!-- Grid column -->
 
     </div>
     <!-- Grid row -->
-
+    
     <hr class="my-5">
   <?php endforeach; ?>
   </section>
